@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../src/less/glider.css">
+
+        <style>
+            .root {
+                margin: 0 auto;
+                width: 900px;
+            }
+            .glider {
+                height: 300px;
+                position: relative;
+            }
+            .glider-items {
+                height: 100%;
+                position: relative;
+            }
+            .glider-item {
+                bottom: 0;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 100%;
+            }
+            .glider-bullets {
+                bottom: 30px;
+                left: 50%;
+                position: absolute;
+                transform: translate(-50%, 0);
+            }
+            .glider-bullet {
+                background-color: #fff;
+                display: inline-block;
+                height: 10px;
+                width: 10px;
+            }
+            .glider-bullet + .glider-bullet {
+                margin-left: 5px;
+            }
+            .glider-bullets-clickable .glider-bullet {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="root">
+            <div class="glider">
+                <div class="glider-items">
+                    <div class="glider-item" style="background-image: url(http://placehold.it/900x300.png?text=Slide+1)"></div>
+                    <div class="glider-item" style="background-image: url(http://placehold.it/900x300.png?text=Slide+2)"></div>
+                    <div class="glider-item" style="background-image: url(http://placehold.it/900x300.png?text=Slide+3)"></div>
+                    <div class="glider-item" style="background-image: url(http://placehold.it/900x300.png?text=Slide+4)"></div>
+                    <div class="glider-item" style="background-image: url(http://placehold.it/900x300.png?text=Slide+5)"></div>
+                </div>
+                <div class="glider-bullets"></div>
+            </div>
+        </div>
+
+        <script src="../src/js/glider.js"></script>
+        <script>
+            var glider = new Glider('.glider', {
+                pagination: '.glider-bullets'
+            });
+
+            console.log(glider);
+        </script>
+    </body>
+</html>

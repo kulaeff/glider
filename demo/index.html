@@ -4,7 +4,7 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../src/less/glider.css">
+        <link rel="stylesheet" href="../src/less/glider.less">
 
         <style>
             .root {
@@ -13,7 +13,6 @@
             }
             .glider {
                 height: 300px;
-                position: relative;
             }
             .glider-items {
                 height: 100%;
@@ -21,6 +20,8 @@
             }
             .glider-item {
                 bottom: 0;
+                display: none;
+                font-size: 0;
                 height: 100%;
                 left: 0;
                 position: absolute;
@@ -28,17 +29,64 @@
                 top: 0;
                 width: 100%;
             }
+            .glider-item-active {
+                display: block;
+            }
+            .glider-item-element {
+                /*backface-visibility: hidden;*/
+                display: inline-block;
+            }
             .glider-bullets {
-                bottom: 30px;
+                bottom: 20px;
                 left: 50%;
                 position: absolute;
                 transform: translate(-50%, 0);
             }
             .glider-bullet {
                 background-color: #fff;
+                border: none;
                 display: inline-block;
                 height: 10px;
+                outline: none;
+                padding: 0;
                 width: 10px;
+            }
+            .glider-bullet-active {
+                background-color: #f39;
+            }
+            .glider-arrow {
+                background-color: transparent;
+                border-bottom: none;
+                border-left: 5px solid #fff;
+                border-right: none;
+                border-top: 5px solid #fff;
+                cursor: pointer;
+                height: 24px;
+                margin-top: -12px;
+                outline: none;
+                padding: 0;
+                position: absolute;
+                top: 50%;
+                width: 24px;
+            }
+            .glider-arrow-next {
+                right: 24px;
+                transform: rotate(135deg);
+            }
+            .glider-arrow-prev {
+                left: 24px;
+                transform: rotate(-45deg);
+            }
+            .glider-arrow:after {
+                background-color: transparent;
+                border-radius: 50%;
+                content: '';
+                display: block;
+                height: 48px;
+                left: -17px; /* 24px / 2 - 48px / 2 + 5px */
+                position: absolute;
+                top: -17px;
+                width: 48px;
             }
             .glider-bullet + .glider-bullet {
                 margin-left: 5px;
@@ -52,19 +100,25 @@
         <div class="root">
             <div class="glider">
                 <div class="glider-items">
-                    <div class="glider-item" style="background-image: url(http://placehold.it/900x300.png?text=Slide+1)"></div>
-                    <div class="glider-item" style="background-image: url(http://placehold.it/900x300.png?text=Slide+2)"></div>
-                    <div class="glider-item" style="background-image: url(http://placehold.it/900x300.png?text=Slide+3)"></div>
-                    <div class="glider-item" style="background-image: url(http://placehold.it/900x300.png?text=Slide+4)"></div>
-                    <div class="glider-item" style="background-image: url(http://placehold.it/900x300.png?text=Slide+5)"></div>
+                    <div class="glider-item" style="background-image: url(slide1.jpg)"></div>
+                    <div class="glider-item" style="background-image: url(slide2.jpg)"></div>
+                    <div class="glider-item" style="background-image: url(slide3.jpg)"></div>
+                    <div class="glider-item" style="background-image: url(slide4.jpg)"></div>
+                    <div class="glider-item" style="background-image: url(slide5.jpg)"></div>
                 </div>
                 <div class="glider-bullets"></div>
+                <button type="button" class="glider-arrow glider-arrow-prev"></button>
+                <button type="button" class="glider-arrow glider-arrow-next"></button>
             </div>
         </div>
 
         <script src="../src/js/glider.js"></script>
         <script>
             var glider = new Glider('.glider', {
+                navigation: {
+                    next: '.glider-arrow-next',
+                    prev: '.glider-arrow-prev'
+                },
                 pagination: '.glider-bullets'
             });
 
